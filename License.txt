@@ -1,0 +1,4 @@
+﻿<h3>License</h3>
+<div class="License">
+	<a href=http://www.dnnbase.com>http://www.dnnbase.com</a>
+</div>

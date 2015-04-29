@@ -1,0 +1,11 @@
+﻿<h3>DNNBase module</h3>
+<p class="Contributor">
+    DNNBase (hello@dnnbase.com)<br/><a href=http://www.dnnbase.com>http://www.dnnbase.com</a>
+</p>
+<hr/>
+<div class="License">
+    <h3>About the DNNBase module</h3><b>Version 01.00.00</b>
+    <ul>
+        <li>Initial package release</li>
+    </ul>
+</div>

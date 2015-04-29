@@ -1,0 +1,4 @@
+﻿var foo =
+{
+    init: function () {  }
+}
