@@ -93,7 +93,7 @@
 
                 string returnUrl = Request.RawUrl;
 
-                addLnk.NavigateUrl = GetControlUrl("EditFoo", "mid=" + ModuleId, "returnUrl=" + returnUrl); // init navUrl for HyperLink
+                hplAdd.NavigateUrl = GetControlUrl("EditFoo", "mid=" + ModuleId, "returnUrl=" + returnUrl); // init navUrl for HyperLink
             }
             catch (Exception ex) // catch exceptions
             {
@@ -101,20 +101,18 @@
             }
         }
 
-        #endregion
-
         /// <summary>
         /// grdFoo_NeedDataSource handler
         /// </summary>
-        protected void grd_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
+        protected void grdFoo_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
             try // try to handle grdFoo_OnNeedDataSource
             {
                 string orderBy = "Name"; string orderDirection = "ASC";
 
-                if (grd.MasterTableView != null && grd.MasterTableView.SortExpressions.Count > 0)
+                if (grdFoo.MasterTableView != null && grdFoo.MasterTableView.SortExpressions.Count > 0)
                 {
-                    GridSortExpression expression = grd.MasterTableView.SortExpressions[0];
+                    GridSortExpression expression = grdFoo.MasterTableView.SortExpressions[0];
 
                     orderBy = expression.FieldName; // define order by options
                     {
@@ -122,11 +120,11 @@
                     }
                 }
 
-                int totalCount = -1, start = grd.CurrentPageIndex * grd.PageSize; // CurrentPageIndex at first == 0!
+                int totalCount = -1, start = grdFoo.CurrentPageIndex * grdFoo.PageSize; // CurrentPageIndex at first == 0!
 
-                grd.DataSource = UnitOfWork.Foos.GetAllView(start, grd.PageSize, orderBy, orderDirection, out totalCount); // get paged view
+                grdFoo.DataSource = UnitOfWork.Foos.GetAllView(start, grdFoo.PageSize, orderBy, orderDirection, out totalCount); // get paged view
 
-                grd.VirtualItemCount = totalCount; // bind total count
+                grdFoo.VirtualItemCount = totalCount; // bind total count
             }
             catch (Exception ex) // catch exceptions
             {
@@ -135,19 +133,19 @@
         }
 
         /// <summary>
-        /// grdFoo_ItemDataBound
+        /// grdFoo_ItemDataBound handler
         /// </summary>
-        protected void grd_ItemDataBound(object sender, GridItemEventArgs e)
+        protected void grdFoo_ItemDataBound(object sender, GridItemEventArgs e)
         {
             try // try to handle grdFoo_ItemDataBound
             {
                 if (e.Item.GetType() == typeof(GridDataItem))
                 {
-                    HyperLink hplink = (e.Item.FindControl("editFooLink") as HyperLink);
+                    HyperLink hplink = (e.Item.FindControl("hlEdit") as HyperLink);
 
-                    HyperLink addLink = (e.Item.FindControl("addFooLink") as HyperLink);
+                    HyperLink addLink = (e.Item.FindControl("hlAdd") as HyperLink);
 
-                    LinkButton delLink = (e.Item.FindControl("deleteFooLink") as LinkButton);
+                    LinkButton delLink = (e.Item.FindControl("lbtnDelete") as LinkButton);
 
                     var foo = (e.Item.DataItem as DNNBase.Components.Entities.Foo);
 
@@ -168,27 +166,26 @@
                 Exceptions.ProcessModuleLoadException(this, ex);
             }
         }
-        
+
         /// <summary>
-        /// grdFoo_ItemCommand
+        /// grdFoo_ItemCommand handler
         /// </summary>
-        protected void grd_ItemCommand(object sender, GridCommandEventArgs e)
-        {            
-            if( "Delete" == e.CommandName ) // check incoming GridItem's command
+        protected void grdFoo_ItemCommand(object sender, GridCommandEventArgs e)
+        {
+            try
             {
-                try
-                {
-                    int id;
+                int id;
 
-                    Int32.TryParse(e.CommandArgument.ToString(), out id);
-
+                if ("Delete" == e.CommandName && Int32.TryParse(e.CommandArgument.ToString(), out id))
                     UnitOfWork.Foos.Delete(id);
-                }
-                catch (Exception exc) // catch exceptions
-                {
-                    throw exc;
-                }
+            }
+            catch (Exception exc) // catch exceptions
+            {
+                throw exc;
             }
         }
+
+        #endregion
+
     }
 }

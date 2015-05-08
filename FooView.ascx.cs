@@ -54,6 +54,8 @@
 
         #endregion
 
+        #region Public Methods
+
         /// <summary>
         /// To Relative Url
         /// </summary>
@@ -64,6 +66,30 @@
                 return result.Replace(@"\", "/").Insert(0, "~/");
             }
         }
+
+        #endregion
+
+        #region Protected Methods
+
+        /// <summary>
+        /// Evaluates Item template.
+        /// </summary>
+        protected string EvaluateItem()
+        {
+            try
+            {
+                string template = _templates["Item"];
+
+                return _razor.Evaluate(_model, template);
+            }
+            catch (Exception ex) // catch exceptions
+            {
+                Exceptions.ProcessModuleLoadException(this, ex);
+                return "";
+            }
+        }
+
+        #endregion
 
         #region Protected Methods : Event Handlers
 
@@ -115,7 +141,7 @@
             {
                 Exceptions.ProcessModuleLoadException(this, exc);
             }
-            
+
         }
 
         /// <summary>
@@ -147,7 +173,7 @@
 
                 _model = new FooViewModel();
                 _model.Foos = UnitOfWork.Foos.GetAll();
-               
+
             }
             catch (Exception ex) // catch exceptions
             {
@@ -156,23 +182,5 @@
         }
 
         #endregion
-
-        /// <summary>
-        /// Evaluates Item template.
-        /// </summary>
-        protected string EvaluateItem()
-        {
-            try 
-            {
-                string template = _templates["Item"];
-
-                return _razor.Evaluate(_model, template);
-            }
-            catch (Exception ex) // catch exceptions
-            {
-                Exceptions.ProcessModuleLoadException(this, ex);
-                return "";
-            }
-        }
     }
 }

@@ -10,7 +10,7 @@
     public class FooViewModel
     {
         /// <summary>
-        /// 
+        /// Get all foos
         /// </summary>
         public List<Foo> Foos {get; set;}
     }

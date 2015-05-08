@@ -15,7 +15,7 @@
         #region Public Methods
 
         /// <summary>
-        /// 
+        /// Register default route for api controller
         /// </summary>
         public void RegisterRoutes(IMapRoute routeManager)
         {

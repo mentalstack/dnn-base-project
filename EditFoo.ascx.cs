@@ -48,7 +48,7 @@
         }
 
         /// <summary>
-        /// Page_Load hadler.
+        /// Page_Load handler.
         /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -74,30 +74,20 @@
 
                 if (IsPostBack) return;
 
-                rtrn.NavigateUrl = Request.QueryString["returnUrl"].ToString(); // Back to the Past
+                string returnUrl = Request.QueryString["returnUrl"] ?? "/";
+                {
+                    hlReturn.NavigateUrl = returnUrl;
+                }
 
                 int id = -1;
                 string queryId = Request.QueryString["id"] ?? "";
 
-                try
+                if (Int32.TryParse(queryId, out id))
                 {
-                    if (queryId != "" && queryId != null)
-                    {
-                        Int32.TryParse(queryId, out id);
-                        DNNBase.Components.Entities.Foo foo = UnitOfWork.Foos.GetBy(id);
+                    DNNBase.Components.Entities.Foo foo = UnitOfWork.Foos.GetBy(id);
 
-                        nameFoo.Text = foo.Name;
-                        descFoo.Text = foo.Description;
-                    }
-                    else
-                    {
-                        nameFoo.Text = "";
-                        descFoo.Text = "";
-                    }
-                }
-                catch (Exception exc) // catch exceptions
-                {
-                    Exceptions.ProcessModuleLoadException(this, exc);
+                    txtName.Text = foo.Name;
+                    txtDescription.Text = foo.Description;
                 }
             }
             catch (Exception ex) // catch exceptions
@@ -106,30 +96,29 @@
             }
         }
 
-        #endregion
-
         /// <summary>
-        /// Add button click
+        /// btnAdd_Click handler.
         /// </summary>
-        protected void add_Click(object sender, EventArgs e)
+        protected void btnAdd_Click(object sender, EventArgs e)
         {
-            if(Page.IsValid)
+            if (!Page.IsValid) return;
+
+            int id = -1;
+            string queryId = Request.QueryString["id"] ?? "";
+
+            if (Int32.TryParse(queryId, out id))
             {
-                int id = -1;
-                string queryId = Request.QueryString["id"] ?? "";
-
-                if (queryId != "" && queryId != null) // if FooId param is not passed, add new Foo, else update it
-                {
-                    Int32.TryParse(queryId, out id);
-                    UnitOfWork.Foos.Update(id, nameFoo.Text, descFoo.Text);
-                }
-                else
-                {
-                    UnitOfWork.Foos.Add(nameFoo.Text, descFoo.Text);
-                }
-
-                Response.Redirect(Request.QueryString["returnUrl"].ToString()); // Back to the Past
+                UnitOfWork.Foos.Update(id, txtName.Text, txtDescription.Text);
             }
+            else
+            {
+                UnitOfWork.Foos.Add(txtName.Text, txtDescription.Text);
+            }
+
+            string returnUrl = Request.QueryString["returnUrl"] ?? "/";
+            Response.Redirect(returnUrl);
         }
     }
+
+        #endregion
 }

@@ -117,19 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Desc.Label" xml:space="preserve">
+  <data name="Description.Label" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="Desc.Label.Help" xml:space="preserve">
+  <data name="Description.Label.Help" xml:space="preserve">
     <value>That is the description of Foo</value>
   </data>
-  <data name="Edit.Required" xml:space="preserve">
-    <value>Filed must not be empty...Fill me!</value>
+  <data name="Description.Required" xml:space="preserve">
+    <value>Description must not be empty!</value>
   </data>
   <data name="Name.Label" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="Name.Label.Help" xml:space="preserve">
     <value>This is the name of Foo</value>
+  </data>
+  <data name="Name.Required" xml:space="preserve">
+    <value>Name must not be empty!</value>
   </data>
 </root>
