@@ -74,7 +74,10 @@
 
                 if (IsPostBack) return;
 
-                hlReturn.NavigateUrl = Request.QueryString["returnUrl"].ToString(); // Back to the Past
+                string returnUrl = Request.QueryString["returnUrl"] ?? "/";
+                {
+                    hlReturn.NavigateUrl = returnUrl;
+                }
 
                 int id = -1;
                 string queryId = Request.QueryString["id"] ?? "";
@@ -98,8 +101,7 @@
         /// </summary>
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            if (!Page.IsValid)
-                return;
+            if (!Page.IsValid) return;
 
             int id = -1;
             string queryId = Request.QueryString["id"] ?? "";
@@ -113,7 +115,8 @@
                 UnitOfWork.Foos.Add(txtName.Text, txtDescription.Text);
             }
 
-            Response.Redirect(Request.QueryString["returnUrl"].ToString()); // Back to the Past
+            string returnUrl = Request.QueryString["returnUrl"] ?? "/";
+            Response.Redirect(returnUrl);
         }
     }
 
