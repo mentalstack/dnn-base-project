@@ -10,33 +10,51 @@
 namespace DNNBase {
     
     
-    public partial class FooSettings {
+    public partial class FooView {
         
         /// <summary>
-        /// txtDefaultMessage control.
+        /// sbInit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDefaultMessage;
+        protected global::Telerik.Web.UI.RadScriptBlock sbInit;
         
         /// <summary>
-        /// rqvDefaultMessage control.
+        /// alpMain control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rqvDefaultMessage;
+        protected global::Telerik.Web.UI.RadAjaxLoadingPanel alpMain;
         
         /// <summary>
-        /// TBColor control.
+        /// phAjaxManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBColor;
+        protected global::System.Web.UI.WebControls.PlaceHolder phAjaxManager;
+        
+        /// <summary>
+        /// apMain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadAjaxPanel apMain;
+        
+        /// <summary>
+        /// phTemplate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phTemplate;
     }
 }

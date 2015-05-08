@@ -1,0 +1,14 @@
+﻿@using DotNetNuke.Web.Razor;
+
+@using DNNBase;
+@using DNNBase.Components.Entities;
+@using DNNBase.Components;
+
+@inherits ViewWebPage
+
+<ul class="bseList margin">
+    @foreach (var foo in Model.Foos)
+    {
+        <li class="bseItem">@foo.Name  @foo.Description</li>
+    }
+</ul>

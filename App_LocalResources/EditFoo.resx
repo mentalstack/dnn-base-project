@@ -117,28 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add.Header" xml:space="preserve">
-    <value>Add New Foo</value>
+  <data name="Desc.Label" xml:space="preserve">
+    <value>Description</value>
   </data>
-  <data name="Command.Header" xml:space="preserve">
-    <value>Command</value>
+  <data name="Desc.Label.Help" xml:space="preserve">
+    <value>That is the description of Foo</value>
   </data>
-  <data name="Delete.Confirm" xml:space="preserve">
-    <value>Are you sure?</value>
+  <data name="Edit.Required" xml:space="preserve">
+    <value>Filed must not be empty...Fill me!</value>
   </data>
-  <data name="Edit.Header" xml:space="preserve">
-    <value>Edit Foo</value>
+  <data name="Name.Label" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="FooDescription.Header" xml:space="preserve">
-    <value>Description of the Foo</value>
-  </data>
-  <data name="FooName.Header" xml:space="preserve">
-    <value>Name of the Foo</value>
-  </data>
-  <data name="Img.Header" xml:space="preserve">
-    <value>Foo Img</value>
-  </data>
-  <data name="Welcome.Title" xml:space="preserve">
-    <value>Foo welcomes you so much!</value>
+  <data name="Name.Label.Help" xml:space="preserve">
+    <value>This is the name of Foo</value>
   </data>
 </root>

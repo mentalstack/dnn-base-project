@@ -8,7 +8,6 @@
 
     using DotNetNuke.Instrumentation;
 
-    using DotNetNuke.Security;
     using DotNetNuke.Security.Permissions;
 
     using DotNetNuke.Services.FileSystem;
@@ -19,7 +18,6 @@
     using DotNetNuke.Web.UI.WebControls;
 
     using System;
-    using System.Linq;
     using System.IO;
 
     using System.Web.UI;

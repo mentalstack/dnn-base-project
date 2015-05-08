@@ -12,7 +12,7 @@
     {
         #region Properties
 
-        
+        FooRepository Foos { get; }
 
         #endregion
     }
@@ -24,22 +24,22 @@
     {
         #region Private Fields
 
-        
+        private FooRepository _foos = null;
 
         #endregion
 
         #region Private Properties : Provider
 
-        /// <summary>
-        /// Gets or sets data provider.
-        /// </summary>
         private DataProvider DataProvider { get; set; }
 
         #endregion
 
         #region Public Properties
 
-        
+        public FooRepository Foos 
+        {
+            get { return _foos ?? (_foos = new FooRepository(DataProvider)); } 
+        }
 
         #endregion
 

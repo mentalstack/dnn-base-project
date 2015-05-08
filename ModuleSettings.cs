@@ -1,6 +1,5 @@
 ﻿namespace DNNBase
 {
-    using DotNetNuke.Entities;
     using DotNetNuke.Entities.Modules;
 
     using DotNetNuke.Services.Exceptions;
@@ -8,10 +7,8 @@
     using DotNetNuke.Framework;
     using DotNetNuke.Framework.JavaScriptLibraries;
 
-    using DotNetNuke.Web.Client;
     using DotNetNuke.Web.Client.ClientResourceManagement;
 
-    using System.Web.UI;
     using System.Web.UI.WebControls;
 
     using System;

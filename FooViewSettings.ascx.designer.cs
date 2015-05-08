@@ -10,33 +10,24 @@
 namespace DNNBase {
     
     
-    public partial class FooSettings {
+    public partial class FooViewSettings {
         
         /// <summary>
-        /// txtDefaultMessage control.
+        /// drpList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDefaultMessage;
+        protected global::System.Web.UI.WebControls.DropDownList drpList;
         
         /// <summary>
-        /// rqvDefaultMessage control.
+        /// lblOut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rqvDefaultMessage;
-        
-        /// <summary>
-        /// TBColor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBColor;
+        protected global::System.Web.UI.WebControls.Label lblOut;
     }
 }

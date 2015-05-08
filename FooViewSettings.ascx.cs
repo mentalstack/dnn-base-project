@@ -10,29 +10,17 @@
     using System;
 
     /// <summary>
-    /// FooSettings
+    /// FooView Module settings
     /// </summary>
-    public partial class FooSettings : ModuleSettings
+    public partial class FooViewSettings : ModuleSettings
     {
-        #region Private Fields
-
-        /// <summary>
-        /// Interview settings.
-        /// </summary>
         private Infrastructure.FooModuleSettings _settings = null;
 
-        #endregion
-
-        #region Protected Methods : Event Handlers
-
-        /// <summary>
-        /// OnInit handler.
-        /// </summary>
         protected override void OnInit(EventArgs e)
         {
             try // try to handle OnInit
             {
-                LocalResourceFile = TemplateSourceDirectory + "/App_LocalResources/FooSettings.resx";
+                LocalResourceFile = TemplateSourceDirectory + "/App_LocalResources/FooViewSettings.resx";
 
                 ClientResourceManager.RegisterStyleSheet(Page, TemplateSourceDirectory + "/Css/foo.settings.css", FileOrder.Css.DefaultPriority + 1);
                 {
@@ -45,14 +33,13 @@
             }
         }
 
-        /// <summary>
-        /// Page_Load handler.
-        /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
             try // try to handle Page_Load
             {
-                if (IsPostBack) return; 
+                if(IsPostBack) return;
+
+                drpList.SelectedValue = _settings.TemplateDirectory; 
             }
             catch (Exception ex) // catch exceptions
             {
@@ -60,12 +47,8 @@
             }
         }
 
-        #endregion
-
-        #region Public Methods
-
         /// <summary>
-        /// Loads settings.
+        /// 
         /// </summary>
         public override void LoadSettings()
         {
@@ -90,6 +73,8 @@
 
                 _settings = Infrastructure.FooModuleSettings.Load(TabModuleId);
                 {
+                    _settings.TemplateDirectory = drpList.SelectedValue.ToString();
+
                     _settings.Update();
                 }
             }
@@ -98,7 +83,5 @@
                 Exceptions.ProcessModuleLoadException(this, ex);
             }
         }
-
-        #endregion
     }
 }

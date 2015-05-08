@@ -1,6 +1,5 @@
 namespace DNNBase.Components.Controllers
 {
-    using DotNetNuke.Entities;
     using DotNetNuke.Entities.Modules;
 
     using System;

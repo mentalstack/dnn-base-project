@@ -1,15 +1,11 @@
 namespace DNNBase.Components.Entities
 {
-    using DotNetNuke.Entities;
     using DotNetNuke.Entities.Modules;
 
-    using DNNBase.Components;
     using DNNBase.Components.Repositories;
 
-    using System.Xml;
     using System.Xml.Serialization;
 
-    using System.Runtime;
     using System.Runtime.Serialization;
 
     using System;
