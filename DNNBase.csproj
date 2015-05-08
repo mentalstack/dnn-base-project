@@ -85,6 +85,8 @@
     <Reference Include="System.Data.Linq">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Caching" />
@@ -122,6 +124,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Entities\Concrete\Foo.cs" />
+    <Compile Include="Components\Repositories\Concrete\FooRepository.cs" />
+    <Compile Include="FooView.ascx.cs">
+      <DependentUpon>FooView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FooView.ascx.designer.cs">
+      <DependentUpon>FooView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditFoo.ascx.cs">
+      <DependentUpon>EditFoo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditFoo.ascx.designer.cs">
+      <DependentUpon>EditFoo.ascx</DependentUpon>
+    </Compile>
     <Compile Include="FooSettings.ascx.cs">
       <DependentUpon>FooSettings.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -144,8 +162,16 @@
     </Compile>
     <Compile Include="Enums.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="FooViewSettings.ascx.cs">
+      <DependentUpon>FooViewSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FooViewSettings.ascx.designer.cs">
+      <DependentUpon>FooViewSettings.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\ModuleSettings.cs" />
     <Compile Include="Json\JsonConverter.cs" />
+    <Compile Include="Models\FooViewModel.cs" />
     <Compile Include="ModuleBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -155,11 +181,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RazorEvaluator.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="ViewWebPage.cs" />
     <Compile Include="WebControls\DnnFileSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Css\foo.settings.css" />
     <Content Include="Css\foo.css" />
+    <Content Include="FooView.ascx" />
+    <Content Include="EditFoo.ascx" />
     <Content Include="FooSettings.ascx" />
     <Content Include="BuildScripts\ModulePackage.targets">
       <SubType>Designer</SubType>
@@ -168,12 +197,15 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Foo.ascx" />
+    <Content Include="FooViewSettings.ascx" />
     <Content Include="Images\logo.png" />
     <Content Include="License.txt" />
     <Content Include="Notes.txt" />
     <Content Include="Scripts\utils.js" />
     <Content Include="Scripts\auxiliary.js" />
     <Content Include="Scripts\foo.js" />
+    <Content Include="Templates\View\Default\Css\template.css" />
+    <Content Include="Templates\View\Toxic\Css\template.css" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Packages.config">
@@ -182,10 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\Entities\Aggregates\" />
-    <Folder Include="Components\Entities\Concrete\" />
     <Folder Include="Components\Entities\Results\" />
-    <Folder Include="Components\Repositories\Concrete\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DNNBase.dnn">
@@ -203,6 +232,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\FooSettings.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\EditFoo.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\View\Default\Item.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\FooView.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\FooViewSettings.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\View\Toxic\Item.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

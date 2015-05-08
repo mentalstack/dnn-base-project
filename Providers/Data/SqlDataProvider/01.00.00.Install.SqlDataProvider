@@ -1,1 +1,128 @@
-﻿
+﻿IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}DNNBase_Foos]') AND type in (N'U'))
+    DROP TABLE {databaseOwner}[{objectQualifier}DNNBase_Foos]
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}DNNBase_Foos]') AND type in (N'U'))
+BEGIN
+    CREATE TABLE {databaseOwner}[{objectQualifier}DNNBase_Foos]
+    (
+        [FooId]        [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+        [Name]         [nvarchar](50) NOT NULL,
+        [Description]  [nvarchar](50) NOT NULL
+    )
+END
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}DNNBase_AddFoo]') AND type in (N'P', N'PC'))
+    DROP PROCEDURE {databaseOwner}[{objectQualifier}DNNBase_AddFoo]
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}DNNBase_UpdateFoo]') AND type in (N'P', N'PC'))
+    DROP PROCEDURE {databaseOwner}[{objectQualifier}DNNBase_UpdateFoo]
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}DNNBase_GetAll]') AND type in (N'P', N'PC'))
+    DROP PROCEDURE {databaseOwner}[{objectQualifier}DNNBase_GetAll]
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}DNNBase_GetById]') AND type in (N'P', N'PC'))
+    DROP PROCEDURE {databaseOwner}[{objectQualifier}DNNBase_GetById]
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}DNNBase_GetByName]') AND type in (N'P', N'PC'))
+    DROP PROCEDURE {databaseOwner}[{objectQualifier}DNNBase_GetByName]
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}DNNBase_DeleteFooById]') AND type in (N'P', N'PC'))
+    DROP PROCEDURE {databaseOwner}[{objectQualifier}DNNBase_DeleteFooById]
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}DNNBase_DeleteFooByName]') AND type in (N'P', N'PC'))
+    DROP PROCEDURE {databaseOwner}[{objectQualifier}DNNBase_DeleteFooByName]
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}DNNBase_AddFoo]
+    @Name nvarchar(15), @Description nvarchar(50)
+AS
+BEGIN
+    INSERT INTO {databaseOwner}[{objectQualifier}DNNBase_Foos] ([Name], [Description])
+         VALUES (@Name, @Description)
+
+    SELECT SCOPE_IDENTITY()
+END
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}DNNBase_UpdateFoo]
+    @Id int, @Name nvarchar(15), @Description nvarchar(50)
+AS
+BEGIN
+    UPDATE {databaseOwner}[{objectQualifier}DNNBase_Foos]
+       SET [Name] = @Name,
+           [Description] = @Description
+     WHERE [FooId] = @Id
+END
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}DNNBase_GetAll]
+AS
+BEGIN
+    SELECT * FROM {databaseOwner}[{objectQualifier}DNNBase_Foos]
+END
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}DNNBase_GetById]
+    @Id int
+AS
+BEGIN
+    SELECT *
+     FROM  {databaseOwner}[{objectQualifier}DNNBase_Foos]
+     WHERE [FooId] = @Id
+END
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}DNNBase_GetByName]
+    @Name nvarchar(15)
+AS
+BEGIN
+    SELECT *
+      FROM {databaseOwner}[{objectQualifier}DNNBase_Foos]
+     WHERE [Name] = @Name
+END
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}DNNBase_DeleteFooById]
+    @Id int
+AS
+BEGIN
+    DELETE {databaseOwner}[{objectQualifier}DNNBase_Foos]
+     WHERE [FooId] = @Id 
+END
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}DNNBase_DeleteFooByName]
+    @Name nvarchar(15)
+AS
+BEGIN
+    DELETE {databaseOwner}[{objectQualifier}DNNBase_Foos]
+     WHERE [Name] = @Name 
+END
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}DNNBase_GetFooView]
+    @StartIndex int, @Length int, @OrderBy nvarchar(20), @OrderDescription nvarchar(20)
+AS
+BEGIN
+    SELECT COUNT(*) AS TotalCount
+      FROM {databaseOwner}[{objectQualifier}DNNBase_Foos]
+
+    SELECT *
+     FROM (SELECT ROW_NUMBER() OVER (
+     ORDER BY CASE WHEN @OrderBy='Name' AND @OrderDescription='ASC'  THEN a.[Name] END ASC,
+              CASE WHEN @OrderBy='Name' AND @OrderDescription='DESC' THEN a.[Name] END DESC)
+              AS Row,
+              a.*
+     FROM {databaseOwner}[{objectQualifier}DNNBase_Foos] AS a) AS q
+     WHERE q.[Row] > @StartIndex AND q.[Row] <= @StartIndex + @Length
+     ORDER BY q.[Row]
+END
+GO

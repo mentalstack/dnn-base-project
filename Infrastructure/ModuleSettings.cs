@@ -13,25 +13,23 @@
         #region Private Fields
 
         /// <summary>
-        /// 
+        /// Module id
         /// </summary>
         private int _moduleId = -1;
 
         /// <summary>
-        /// 
+        /// Default template skin
         /// </summary>
-        private string _defaultMessage = "Default message";
+        private string _directory = "Default";
 
         #endregion
 
         #region Public Properties
-
-        /// <summary>
-        /// Gets or sets message.
-        /// </summary>
-        public string DefaultMessage
+        
+        public string TemplateDirectory
         {
-            get { return _defaultMessage; } set { _defaultMessage = value; }
+            get { return _directory; }
+            set { _directory = value; }
         }
 
         #endregion
@@ -55,10 +53,10 @@
         public void Update()
         {
             var controller = new ModuleController();
-            
-            if (!String.IsNullOrEmpty(DefaultMessage))
+
+            if (!String.IsNullOrEmpty(TemplateDirectory))
             {
-                controller.UpdateTabModuleSetting(_moduleId, "DefaultMessage", DefaultMessage);
+                controller.UpdateTabModuleSetting(_moduleId, "TemplateDirectory", TemplateDirectory);
             }
         }
 
@@ -73,9 +71,9 @@
         {
             _moduleId = moduleId;
 
-            if (settings.ContainsKey("DefaultMessage")) 
+            if (settings.ContainsKey("TemplateDirectory")) 
             {
-                DefaultMessage = settings["DefaultMessage"].ToString();
+                TemplateDirectory = settings["TemplateDirectory"].ToString();
             }
         }
 

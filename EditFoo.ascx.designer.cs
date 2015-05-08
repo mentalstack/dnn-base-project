@@ -10,7 +10,7 @@
 namespace DNNBase {
     
     
-    public partial class Foo {
+    public partial class EditFoo {
         
         /// <summary>
         /// sbInit control.
@@ -49,30 +49,57 @@ namespace DNNBase {
         protected global::Telerik.Web.UI.RadAjaxPanel apMain;
         
         /// <summary>
-        /// lblMessage control.
+        /// nameFoo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.TextBox nameFoo;
         
         /// <summary>
-        /// grd control.
+        /// rqdFld control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DotNetNuke.Web.UI.WebControls.DnnGrid grd;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rqdFld;
         
         /// <summary>
-        /// addLnk control.
+        /// descFoo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink addLnk;
+        protected global::System.Web.UI.WebControls.TextBox descFoo;
+        
+        /// <summary>
+        /// rqdFld2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rqdFld2;
+        
+        /// <summary>
+        /// LinkButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        
+        /// <summary>
+        /// rtrn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink rtrn;
     }
 }

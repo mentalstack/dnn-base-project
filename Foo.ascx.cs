@@ -1,25 +1,21 @@
 ﻿namespace DNNBase
 {
     using DotNetNuke.Services.Exceptions;
+
     using DotNetNuke.Web.Client;
     using DotNetNuke.Web.Client.ClientResourceManagement;
+
     using System;
-    using System.Collections.Generic;
-    using System.IO;
+
     using System.Web.UI.WebControls;
+
     using Telerik.Web.UI;
 
     /// <summary>
-    /// Interview module control.
+    /// Foo module control.
     /// </summary>
     public partial class Foo : ModuleBase
     {
-        #region Defines
-
-        public const string TEMPLATES_PATH = "~\\DesktopModules\\DNNBase\\Templates";
-
-        #endregion
-
         #region Private Fields
 
         /// <summary>
@@ -29,31 +25,16 @@
 
         #endregion
 
-        #region Private Fields : Templating
-
-        /// <summary>
-        /// Interview module settings.
-        /// </summary>
-        private Infrastructure.FooModuleSettings _settings = null;
-
-        #endregion
-
-        #region Private Fields : State
-
-
-
-        #endregion
-
         #region Private Methods
 
         /// <summary>
-        /// Converts url to relative.
+        /// Gets url of module control.
         /// </summary>
-        public string ToRelativeUrl(FileInfo source)
+        public static string GetControlUrl(string controlKey, params string[] parameters)
         {
-            string result = source.FullName.Replace(Server.MapPath("~\\"), null);
+            string url = DotNetNuke.Common.Globals.NavigateURL(controlKey, parameters);
             {
-                return result.Replace(@"\", "/").Insert(0, "~/");
+                return url; // return url of module control
             }
         }
 
@@ -68,10 +49,7 @@
         {
             try // try to handle OnInit
             {
-                _settings = Infrastructure.FooModuleSettings.Load(TabModuleId);
-                {
-                    LocalResourceFile = TemplateSourceDirectory + "/App_LocalResources/Foo.resx";
-                }
+                LocalResourceFile = TemplateSourceDirectory + "/App_LocalResources/Foo.resx";
 
                 ClientResourceManager.RegisterScript(Page, TemplateSourceDirectory + "/Scripts/foo.js", FileOrder.Js.DefaultPriority + 1);
                 {
@@ -113,10 +91,9 @@
 
                 if (IsPostBack) return;
 
-                if (!String.IsNullOrEmpty(_settings.DefaultMessage))
-                {
-                    lblMessage.Text = _settings.DefaultMessage; lblMessage.Visible = true;
-                }
+                string returnUrl = Request.RawUrl;
+
+                addLnk.NavigateUrl = GetControlUrl("EditFoo", "mid=" + ModuleId, "returnUrl=" + returnUrl); // init navUrl for HyperLink
             }
             catch (Exception ex) // catch exceptions
             {
@@ -125,5 +102,93 @@
         }
 
         #endregion
+
+        /// <summary>
+        /// grdFoo_NeedDataSource handler
+        /// </summary>
+        protected void grd_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
+        {
+            try // try to handle grdFoo_OnNeedDataSource
+            {
+                string orderBy = "Name"; string orderDirection = "ASC";
+
+                if (grd.MasterTableView != null && grd.MasterTableView.SortExpressions.Count > 0)
+                {
+                    GridSortExpression expression = grd.MasterTableView.SortExpressions[0];
+
+                    orderBy = expression.FieldName; // define order by options
+                    {
+                        orderDirection = expression.SortOrder == GridSortOrder.Descending ? "DESC" : "ASC"; // define sorting
+                    }
+                }
+
+                int totalCount = -1, start = grd.CurrentPageIndex * grd.PageSize; // CurrentPageIndex at first == 0!
+
+                grd.DataSource = UnitOfWork.Foos.GetAllView(start, grd.PageSize, orderBy, orderDirection, out totalCount); // get paged view
+
+                grd.VirtualItemCount = totalCount; // bind total count
+            }
+            catch (Exception ex) // catch exceptions
+            {
+                Exceptions.ProcessModuleLoadException(this, ex);
+            }
+        }
+
+        /// <summary>
+        /// grdFoo_ItemDataBound
+        /// </summary>
+        protected void grd_ItemDataBound(object sender, GridItemEventArgs e)
+        {
+            try // try to handle grdFoo_ItemDataBound
+            {
+                if (e.Item.GetType() == typeof(GridDataItem))
+                {
+                    HyperLink hplink = (e.Item.FindControl("editFooLink") as HyperLink);
+
+                    HyperLink addLink = (e.Item.FindControl("addFooLink") as HyperLink);
+
+                    LinkButton delLink = (e.Item.FindControl("deleteFooLink") as LinkButton);
+
+                    var foo = (e.Item.DataItem as DNNBase.Components.Entities.Foo);
+
+                    string id = foo.KeyID.ToString();
+
+                    string returnUrl = Request.RawUrl;
+                    {
+                        hplink.NavigateUrl = GetControlUrl("EditFoo", "id=" + id, "mid=" + ModuleId, "returnUrl=" + returnUrl); // init url by FooId param, if modify Foo
+
+                        addLink.NavigateUrl = GetControlUrl("EditFoo", "mid=" + ModuleId, "returnUrl=" + returnUrl); // init url without FooId param, if create new Foo
+
+                        DotNetNuke.UI.Utilities.ClientAPI.AddButtonConfirm(delLink, LocalizeString("Delete.Confirm")); // Add confirm to button before delete Foo
+                    }
+                }
+            }
+            catch (Exception ex) // catch exceptions
+            {
+                Exceptions.ProcessModuleLoadException(this, ex);
+            }
+        }
+        
+        /// <summary>
+        /// grdFoo_ItemCommand
+        /// </summary>
+        protected void grd_ItemCommand(object sender, GridCommandEventArgs e)
+        {            
+            if( "Delete" == e.CommandName ) // check incoming GridItem's command
+            {
+                try
+                {
+                    int id;
+
+                    Int32.TryParse(e.CommandArgument.ToString(), out id);
+
+                    UnitOfWork.Foos.Delete(id);
+                }
+                catch (Exception exc) // catch exceptions
+                {
+                    throw exc;
+                }
+            }
+        }
     }
 }
