@@ -58,21 +58,21 @@ namespace DNNBase {
         protected global::System.Web.UI.WebControls.Label lblMessage;
         
         /// <summary>
-        /// grd control.
+        /// grdFoo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DotNetNuke.Web.UI.WebControls.DnnGrid grd;
+        protected global::DotNetNuke.Web.UI.WebControls.DnnGrid grdFoo;
         
         /// <summary>
-        /// addLnk control.
+        /// hplAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink addLnk;
+        protected global::System.Web.UI.WebControls.HyperLink hplAdd;
     }
 }

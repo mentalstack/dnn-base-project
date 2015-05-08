@@ -20,72 +20,72 @@
 <%@ Import Namespace="System.Data" %>
 
 <tlr:RadScriptBlock ID="sbInit" runat="server">
-	<script type="text/javascript">
+    <script type="text/javascript">
         <%-- Here will be Javascript code --%>
-	</script>
+    </script>
 </tlr:RadScriptBlock>
 
 <tlr:RadAjaxLoadingPanel ID="alpMain" Skin="Default" runat="server" />
 
 <asp:PlaceHolder ID="phAjaxManager" runat="server">
-	<%-- Here will be ajax manager --%>
+    <%-- Here will be ajax manager --%>
 </asp:PlaceHolder>
 
 <tlr:RadAjaxPanel ID="apMain" runat="server">
-	<div class="dnnForm dnnClear bseFoo bseScope">
-		<tlr:RadCodeBlock runat="server">
-			<h2 class="bseWelcome"><%= LocalizeString("Welcome.Title") %></h2>
-		</tlr:RadCodeBlock>
+    <div class="dnnForm dnnClear bseFoo bseScope">
+        <tlr:RadCodeBlock runat="server">
+            <h2 class="bseWelcome"><%= LocalizeString("Welcome.Title") %></h2>
+        </tlr:RadCodeBlock>
         <div class="dnnFormItem">
             <%-- Dnn Label --%>
             <dnn:Label AssociatedControlID="nameFoo" ResourceKey="Name.Label" runat="server" />
             <%-- TextBox Control --%>
-            <asp:TextBox 
-                runat="server" 
-                ValidationGroup="txtGroup" 
-                Visible="true" 
-                MaxLength="100" 
-                ID="nameFoo">
+            <asp:TextBox
+                ID="txtName"
+                ValidationGroup="txtGroup"
+                Visible="true"
+                MaxLength="100"
+                runat="server">
             </asp:TextBox>
             <%-- Validator --%>
-            <asp:RequiredFieldValidator 
-                ValidationGroup="txtGroup" 
-                Enabled="true" 
-                Display="Dynamic" 
-                ResourceKey="Edit.Required" 
-                CssClass="dnnFormMessage dnnFormError" 
-                ControlToValidate="nameFoo" 
-                runat="server" 
-                id="rqdFld" >
+            <asp:RequiredFieldValidator
+                ID="rfv_1"
+                CssClass="dnnFormMessage dnnFormError"
+                ValidationGroup="txtGroup"
+                Enabled="true"
+                Display="Dynamic"
+                ResourceKey="Edit.Required"
+                ControlToValidate="nameFoo"
+                runat="server">
             </asp:RequiredFieldValidator>
         </div>
         <br />
         <div class="dnnFormItem">
-            <dnn:Label AssociatedControlID="descFoo" ResourceKey="Desc.Label" runat="server" />
+            <dnn:Label AssociatedControl ResourceKey="Desc.Label" runat="server" />
             <%-- TextBox Control --%>
-            <asp:TextBox 
-                runat="server" 
-                ValidationGroup="txtGroup" 
-                Visible="true" 
-                MaxLength="100" 
-                ID="descFoo">
+            <asp:TextBox
+                ID="txtDescription"
+                ValidationGroup="txtGroup"
+                Visible="true"
+                MaxLength="100"
+                runat="server">
             </asp:TextBox>
             <%-- Validator --%>
-            <asp:RequiredFieldValidator 
-                ValidationGroup="txtGroup" 
-                Enabled="true" 
-                Display="Dynamic" 
-                ResourceKey="Edit.Required" 
-                CssClass="dnnFormMessage dnnFormError" 
-                ControlToValidate="descFoo" 
-                runat="server" 
-                id="rqdFld2" >
+            <asp:RequiredFieldValidator
+                ID="rfv_2"
+                CssClass="dnnFormMessage dnnFormError"
+                ValidationGroup="txtGroup"
+                Enabled="true"
+                Display="Dynamic"
+                ResourceKey="Edit.Required"
+                ControlToValidate="descFoo"
+                runat="server">
             </asp:RequiredFieldValidator>
         </div>
         <br />
         <%-- Control --%>
-        <asp:LinkButton Text="Add(+)" CssClass="dnnPrimaryAction" ValidationGroup="txtGroup" OnClick="add_Click" ID="LinkButton1" runat="server" />
+        <asp:LinkButton ID="btnAdd" CssClass="dnnPrimaryAction" Text="Add(+)" ValidationGroup="txtGroup" OnClick="btnAdd_Click" runat="server"/>
         <%-- HyperLink --%>
-        <asp:HyperLink CssClass="dnnSecondaryAction" Text="Return" ID="rtrn" runat="server" />
-        </div>
+        <asp:HyperLink ID="rtrn" CssClass="dnnSecondaryAction" Text="Return"  runat="server"/>
+    </div>
 </tlr:RadAjaxPanel>

@@ -26,12 +26,9 @@
         <%--Dnn Label--%>
 		<dnn:Label ResourceKey="DefaultMessage.Label" runat="server" />
         <%--DropDownList--%>
-        <asp:DropDownList runat="server" ID="drpList">
+        <asp:DropDownList ID="ddlChoiceTemplate" runat="server">
             <asp:ListItem Text="Default" Value="Default" />
             <asp:ListItem Text="Toxic" Value="Toxic" />
         </asp:DropDownList>
-        <br />
-        <%--Label--%>
-        <asp:Label ID="lblOut" runat="server" ></asp:Label>	
 	</div>
 </div>

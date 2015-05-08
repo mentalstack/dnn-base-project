@@ -20,50 +20,50 @@
 <%@ Import Namespace="System.Data" %>
 
 <tlr:RadScriptBlock ID="sbInit" runat="server">
-	<script type="text/javascript">
+    <script type="text/javascript">
         <%-- Here will be Javascript code --%>
-	</script>
+    </script>
 </tlr:RadScriptBlock>
 
 <tlr:RadAjaxLoadingPanel ID="alpMain" Skin="Default" runat="server" />
 
 <asp:PlaceHolder ID="phAjaxManager" runat="server">
-	<%-- Here will be ajax manager --%>
+    <%-- Here will be ajax manager --%>
 </asp:PlaceHolder>
 
 <tlr:RadAjaxPanel ID="apMain" runat="server">
-	<div class="bseFoo bseScope">
-		<tlr:RadCodeBlock runat="server">
-			<h2 class="bseWelcome"><%= LocalizeString("Welcome.Title") %></h2>
-		</tlr:RadCodeBlock>
-		<asp:Label ID="lblMessage" Text="" runat="server" />
-	</div>
+    <div class="bseFoo bseScope">
+        <tlr:RadCodeBlock runat="server">
+            <h2 class="bseWelcome"><%= LocalizeString("Welcome.Title") %></h2>
+        </tlr:RadCodeBlock>
+        <asp:Label ID="lblMessage" Text="" runat="server" />
+    </div>
     <%-- GridView --%>
-	<dnn:DnnGrid ID="grd" 
-        runat="server" 
-        CssClass="dnnGrid" 
-        AllowSorting="true" 
-        OnItemCommand="grd_ItemCommand" 
-        OnNeedDataSource="grd_NeedDataSource" 
-        OnItemDataBound="grd_ItemDataBound" 
-        AllowPaging="true" 
-        AutoGenerateColumns="false">
+    <dnn:DnnGrid ID="grdFoo"
+        CssClass="dnnGrid"
+        AllowSorting="true"
+        OnItemCommand="grdFoo_ItemCommand"
+        OnNeedDataSource="grdFoo_NeedDataSource"
+        OnItemDataBound="grdFoo_ItemDataBound"
+        AllowPaging="true"
+        AutoGenerateColumns="false"
+        runat="server">
         <MasterTableView>
             <HeaderStyle HorizontalAlign="Center" Font-Bold="true" />
             <SortExpressions>
-			    <tlr:GridSortExpression FieldName="Name" SortOrder="Ascending" />
-		    </SortExpressions>
-			<Columns>
-				<dnn:DnnGridBoundColumn DataField="Name" HeaderText="FooName">
-					<ItemStyle HorizontalAlign="Center" />
-				</dnn:DnnGridBoundColumn>
-				<dnn:DnnGridBoundColumn DataField="Description" HeaderText="FooDescription">
-					<ItemStyle HorizontalAlign="Center" />
-				</dnn:DnnGridBoundColumn>
+                <tlr:GridSortExpression FieldName="Name" SortOrder="Ascending" />
+            </SortExpressions>
+            <Columns>
+                <dnn:DnnGridBoundColumn DataField="Name" HeaderText="FooName">
+                    <ItemStyle HorizontalAlign="Center" />
+                </dnn:DnnGridBoundColumn>
+                <dnn:DnnGridBoundColumn DataField="Description" HeaderText="FooDescription">
+                    <ItemStyle HorizontalAlign="Center" />
+                </dnn:DnnGridBoundColumn>
                 <dnn:DnnGridTemplateColumn HeaderText="Img">
                     <ItemStyle HorizontalAlign="Center" />
                     <ItemTemplate>
-                        <asp:HyperLink runat="server" ID="hpLink" >
+                        <asp:HyperLink ID="hpLink" runat="server">
                             <dnn:DnnImage IconKey="Required" runat="server" />
                         </asp:HyperLink>
                     </ItemTemplate>
@@ -71,7 +71,7 @@
                 <dnn:DnnGridTemplateColumn HeaderText="Edit">
                     <ItemStyle HorizontalAlign="Center" />
                     <ItemTemplate>
-                        <asp:HyperLink runat="server" ID="editFooLink">
+                        <asp:HyperLink ID="hlEdit" runat="server">
                             <dnn:DnnImage IconKey="Edit" runat="server" />
                         </asp:HyperLink>
                     </ItemTemplate>
@@ -79,7 +79,7 @@
                 <dnn:DnnGridTemplateColumn HeaderText="Add">
                     <ItemStyle HorizontalAlign="Center" />
                     <ItemTemplate>
-                        <asp:HyperLink runat="server" ID="addFooLink">
+                        <asp:HyperLink ID="hlAdd" runat="server">
                             <dnn:DnnImage IconKey="Add" runat="server" />
                         </asp:HyperLink>
                     </ItemTemplate>
@@ -87,8 +87,8 @@
                 <dnn:DnnGridTemplateColumn HeaderText="Command">
                     <ItemStyle HorizontalAlign="Center" />
                     <ItemTemplate>
-                        <asp:LinkButton 
-                            ID="deleteFooLink"
+                        <asp:LinkButton
+                            ID="lbtnDelete"
                             CommandName="Delete"
                             CommandArgument='<%# Eval("FooId").ToString() %>'
                             EnableViewState="true" runat="server">
@@ -96,10 +96,10 @@
                         </asp:LinkButton>
                     </ItemTemplate>
                 </dnn:DnnGridTemplateColumn>
-			</Columns>
-		</MasterTableView>
-	</dnn:DnnGrid>
+            </Columns>
+        </MasterTableView>
+    </dnn:DnnGrid>
     <br />
     <%-- Redirect to EditFoo control --%>
-    <asp:HyperLink Text="Add(+)" CssClass="dnnPrimaryAction" runat="server" ID="addLnk" />
+    <asp:HyperLink ID="hplAdd" Text="Add(+)" CssClass="dnnPrimaryAction" runat="server"/>
 </tlr:RadAjaxPanel>

@@ -18,7 +18,7 @@
     using DNNBase.Components.Entities;
 
     /// <summary>
-    /// Web controller.
+    /// Web Api controller.
     /// </summary>
     public class WebController : DnnApiController
     {
@@ -46,7 +46,7 @@
         #region Private Methods : Helpers
 
         /// <summary>
-        /// 
+        /// Format ok resopnse
         /// </summary>
         private HttpResponseMessage ResponseOK(object data)
         {
@@ -60,6 +60,9 @@
 
         #region Public Methods
 
+        /// <summary>
+        /// Add new foo
+        /// </summary>
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [HttpPost]
@@ -76,6 +79,9 @@
             }
         }
 
+        /// <summary>
+        /// Get foo by ID
+        /// </summary>
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [HttpGet]
@@ -92,6 +98,10 @@
             }
         }
 
+        /// <summary>
+        /// Get all foos
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [HttpGet]
@@ -108,6 +118,9 @@
             }
         }
 
+        /// <summary>
+        /// Delete foo by ID
+        /// </summary>
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [HttpPost]
@@ -124,6 +137,9 @@
             }
         }
 
+        /// <summary>
+        /// Update foo
+        /// </summary>
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [HttpPost]

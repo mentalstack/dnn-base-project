@@ -48,7 +48,7 @@
         }
 
         /// <summary>
-        /// Page_Load hadler.
+        /// Page_Load handler.
         /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -79,25 +79,13 @@
                 int id = -1;
                 string queryId = Request.QueryString["id"] ?? "";
 
-                try
-                {
-                    if (queryId != "" && queryId != null)
-                    {
-                        Int32.TryParse(queryId, out id);
-                        DNNBase.Components.Entities.Foo foo = UnitOfWork.Foos.GetBy(id);
 
-                        nameFoo.Text = foo.Name;
-                        descFoo.Text = foo.Description;
-                    }
-                    else
-                    {
-                        nameFoo.Text = "";
-                        descFoo.Text = "";
-                    }
-                }
-                catch (Exception exc) // catch exceptions
+                if (Int32.TryParse(queryId, out id))
                 {
-                    Exceptions.ProcessModuleLoadException(this, exc);
+                    DNNBase.Components.Entities.Foo foo = UnitOfWork.Foos.GetBy(id);
+
+                    txtName.Text = foo.Name;
+                    txtDescription.Text = foo.Description;
                 }
             }
             catch (Exception ex) // catch exceptions
@@ -106,30 +94,29 @@
             }
         }
 
-        #endregion
-
         /// <summary>
-        /// Add button click
+        /// btnAdd_Click handler.
         /// </summary>
-        protected void add_Click(object sender, EventArgs e)
+        protected void btnAdd_Click(object sender, EventArgs e)
         {
-            if(Page.IsValid)
+            if (Page.IsValid)
             {
                 int id = -1;
                 string queryId = Request.QueryString["id"] ?? "";
 
-                if (queryId != "" && queryId != null) // if FooId param is not passed, add new Foo, else update it
+                if (Int32.TryParse(queryId, out id))
                 {
-                    Int32.TryParse(queryId, out id);
-                    UnitOfWork.Foos.Update(id, nameFoo.Text, descFoo.Text);
+                    UnitOfWork.Foos.Update(id, txtName.Text, txtDescription.Text);
                 }
                 else
                 {
-                    UnitOfWork.Foos.Add(nameFoo.Text, descFoo.Text);
+                    UnitOfWork.Foos.Add(txtName.Text, txtDescription.Text);
                 }
 
                 Response.Redirect(Request.QueryString["returnUrl"].ToString()); // Back to the Past
             }
         }
     }
+
+        #endregion
 }

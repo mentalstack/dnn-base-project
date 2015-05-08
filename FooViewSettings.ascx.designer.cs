@@ -13,21 +13,12 @@ namespace DNNBase {
     public partial class FooViewSettings {
         
         /// <summary>
-        /// drpList control.
+        /// ddlChoiceTemplate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpList;
-        
-        /// <summary>
-        /// lblOut control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOut;
+        protected global::System.Web.UI.WebControls.DropDownList ddlChoiceTemplate;
     }
 }

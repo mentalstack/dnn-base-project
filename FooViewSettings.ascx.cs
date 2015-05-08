@@ -14,8 +14,17 @@
     /// </summary>
     public partial class FooViewSettings : ModuleSettings
     {
+        #region Private Fields
+
         private Infrastructure.FooModuleSettings _settings = null;
 
+        #endregion
+
+        #region Protected Methods : Event Handlers
+
+        /// <summary>
+        /// OnInit handler.
+        /// </summary>
         protected override void OnInit(EventArgs e)
         {
             try // try to handle OnInit
@@ -33,13 +42,16 @@
             }
         }
 
+        /// <summary>
+        /// Page_Load hadler.
+        /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
             try // try to handle Page_Load
             {
-                if(IsPostBack) return;
+                if (IsPostBack) return;
 
-                drpList.SelectedValue = _settings.TemplateDirectory; 
+                ddlChoiceTemplate.SelectedValue = _settings.TemplateDirectory;
             }
             catch (Exception ex) // catch exceptions
             {
@@ -47,8 +59,11 @@
             }
         }
 
+        #endregion
+
+        #region Public Methods
         /// <summary>
-        /// 
+        /// Load settings
         /// </summary>
         public override void LoadSettings()
         {
@@ -73,7 +88,7 @@
 
                 _settings = Infrastructure.FooModuleSettings.Load(TabModuleId);
                 {
-                    _settings.TemplateDirectory = drpList.SelectedValue.ToString();
+                    _settings.TemplateDirectory = ddlChoiceTemplate.SelectedValue.ToString();
 
                     _settings.Update();
                 }
@@ -83,5 +98,7 @@
                 Exceptions.ProcessModuleLoadException(this, ex);
             }
         }
+
+        #endregion
     }
 }

@@ -140,13 +140,6 @@
     <Compile Include="EditFoo.ascx.designer.cs">
       <DependentUpon>EditFoo.ascx</DependentUpon>
     </Compile>
-    <Compile Include="FooSettings.ascx.cs">
-      <DependentUpon>FooSettings.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FooSettings.ascx.designer.cs">
-      <DependentUpon>FooSettings.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Components\Controllers\BusinessController.cs" />
     <Compile Include="Components\Entities\Abstract\EntityBase.cs" />
     <Compile Include="Components\Mappers\ServiceRouteMapper.cs" />
@@ -189,7 +182,6 @@
     <Content Include="Css\foo.css" />
     <Content Include="FooView.ascx" />
     <Content Include="EditFoo.ascx" />
-    <Content Include="FooSettings.ascx" />
     <Content Include="BuildScripts\ModulePackage.targets">
       <SubType>Designer</SubType>
     </Content>
