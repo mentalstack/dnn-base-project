@@ -1,15 +1,19 @@
 ﻿namespace DNNBase
 {
+    using Telerik.Web.UI;
+
+    using DotNetNuke.Services;
     using DotNetNuke.Services.Exceptions;
+
+    using DotNetNuke.UI.Utilities;
 
     using DotNetNuke.Web.Client;
     using DotNetNuke.Web.Client.ClientResourceManagement;
 
-    using System;
-
+    using System.Web;
     using System.Web.UI.WebControls;
 
-    using Telerik.Web.UI;
+    using System;
 
     /// <summary>
     /// Foo module control.
@@ -65,7 +69,7 @@
         }
 
         /// <summary>
-        /// Page_Load hadler.
+        /// Page_Load handler.
         /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -89,11 +93,12 @@
                     }
                 }
 
-                if (IsPostBack) return;
+                if (IsPostBack) return; 
 
                 string returnUrl = Request.RawUrl;
-
-                hplAdd.NavigateUrl = GetControlUrl("EditFoo", "mid=" + ModuleId, "returnUrl=" + returnUrl); // init navUrl for HyperLink
+                {
+                    btnAdd.NavigateUrl = GetControlUrl("EditFoo", "mid=" + ModuleId, "returnUrl=" + returnUrl);
+                }
             }
             catch (Exception ex) // catch exceptions
             {
@@ -116,15 +121,16 @@
 
                     orderBy = expression.FieldName; // define order by options
                     {
-                        orderDirection = expression.SortOrder == GridSortOrder.Descending ? "DESC" : "ASC"; // define sorting
+                        orderDirection = expression.SortOrder == GridSortOrder.Descending ? "DESC" : "ASC";
                     }
                 }
 
-                int totalCount = -1, start = grdFoo.CurrentPageIndex * grdFoo.PageSize; // CurrentPageIndex at first == 0!
+                int totalCount = -1, start = grdFoo.CurrentPageIndex * grdFoo.PageSize;
 
-                grdFoo.DataSource = UnitOfWork.Foos.GetAllView(start, grdFoo.PageSize, orderBy, orderDirection, out totalCount); // get paged view
-
-                grdFoo.VirtualItemCount = totalCount; // bind total count
+                grdFoo.DataSource = UnitOfWork.Foos.GetAllView(start, grdFoo.PageSize, orderBy, orderDirection, out totalCount);
+                {
+                    grdFoo.VirtualItemCount = totalCount; // bind total count
+                }
             }
             catch (Exception ex) // catch exceptions
             {
@@ -141,23 +147,22 @@
             {
                 if (e.Item.GetType() == typeof(GridDataItem))
                 {
-                    HyperLink hplink = (e.Item.FindControl("hlEdit") as HyperLink);
+                    if (e.Item.GetType() != typeof(GridDataItem)) return;
 
-                    HyperLink addLink = (e.Item.FindControl("hlAdd") as HyperLink);
+                    HyperLink hlEdit = (e.Item.FindControl("hlEdit") as HyperLink);
 
-                    LinkButton delLink = (e.Item.FindControl("lbtnDelete") as LinkButton);
+                    var foo = (e.Item.DataItem as Components.Entities.Foo); string id = foo.FooId.ToString();
 
-                    var foo = (e.Item.DataItem as DNNBase.Components.Entities.Foo);
-
-                    string id = foo.KeyID.ToString();
-
-                    string returnUrl = Request.RawUrl;
+                    string returnUrl = HttpContext.Current.Request.RawUrl;
                     {
-                        hplink.NavigateUrl = GetControlUrl("EditFoo", "id=" + id, "mid=" + ModuleId, "returnUrl=" + returnUrl); // init url by FooId param, if modify Foo
+                        hlEdit.NavigateUrl = GetControlUrl("EditFoo", "id=" + id, "mid=" + ModuleId, "returnUrl=" + returnUrl);
+                    }
 
-                        addLink.NavigateUrl = GetControlUrl("EditFoo", "mid=" + ModuleId, "returnUrl=" + returnUrl); // init url without FooId param, if create new Foo
+                    string confirm = LocalizeString("Delete.Confirm"); // define text
 
-                        DotNetNuke.UI.Utilities.ClientAPI.AddButtonConfirm(delLink, LocalizeString("Delete.Confirm")); // Add confirm to button before delete Foo
+                    LinkButton lbDelete = (e.Item.FindControl("lbDelete") as LinkButton);
+                    {
+                        ClientAPI.AddButtonConfirm(lbDelete, confirm);
                     }
                 }
             }
@@ -172,20 +177,25 @@
         /// </summary>
         protected void grdFoo_ItemCommand(object sender, GridCommandEventArgs e)
         {
-            try
+            try // try to handle grdFoo_ItemCommand
             {
-                int id;
+                int id = -1;
 
                 if ("Delete" == e.CommandName && Int32.TryParse(e.CommandArgument.ToString(), out id))
-                    UnitOfWork.Foos.Delete(id);
+                {
+                    UnitOfWork.Foos.Delete(id); // delete foo by command
+                }
             }
-            catch (Exception exc) // catch exceptions
+            catch (Exception ex) // catch exceptions
             {
-                throw exc;
+                Exceptions.ProcessModuleLoadException(this, ex);
             }
         }
 
         #endregion
 
+        #region Constructors
+
+        #endregion
     }
 }

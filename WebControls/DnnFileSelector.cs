@@ -690,7 +690,7 @@
 
                         RadAjaxPanel panel = (Parent as RadAjaxPanel);
                         {
-                            panel.ClientEvents.OnRequestStart = @"auxiliary.postback";
+                            panel.ClientEvents.OnRequestStart = @"utils.postback";
                         }
 
                         break;

@@ -2,6 +2,7 @@
 {
     using DNNBase.Models;
 
+    using DotNetNuke.Web;
     using DotNetNuke.Web.Razor;
 
     /// <summary>
@@ -10,6 +11,8 @@
     public abstract class ViewWebPage : DotNetNukeWebPage<FooViewModel>
     {
         #region Public Properties
+
+        // your awesome custom properties here
 
         #endregion
     }

@@ -7,15 +7,32 @@
 
     using DotNetNuke.Web.UI.WebControls;
 
+    using System.Collections;
+    using System.Collections.Generic;
+
     using System;
+    using System.Linq;
+    using System.IO;
 
     /// <summary>
-    /// FooView Module settings
+    /// FooView module settings.
     /// </summary>
     public partial class FooViewSettings : ModuleSettings
     {
+        #region Defines
+
+        /// <summary>
+        /// Templates directory relative path.
+        /// </summary>
+        private const string TEMPLATES_DIRECTORY = "~\\DesktopModules\\DNNBase\\Templates\\View";
+
+        #endregion
+
         #region Private Fields
 
+        /// <summary>
+        /// Module settings.
+        /// </summary>
         private Infrastructure.FooModuleSettings _settings = null;
 
         #endregion
@@ -51,7 +68,15 @@
             {
                 if (IsPostBack) return;
 
-                ddlChoiceTemplate.SelectedValue = _settings.TemplateDirectory;
+                IEnumerable<string> paths = null; // get directories list
+                {
+                    paths = Directory.EnumerateDirectories(Server.MapPath(TEMPLATES_DIRECTORY));
+                }
+
+                cbTemplateDirectory.DataSource = paths.Select(x => new DirectoryInfo(x));
+                {
+                    cbTemplateDirectory.DataBind(); cbTemplateDirectory.SelectedValue = _settings.TemplateDirectory;
+                }
             }
             catch (Exception ex) // catch exceptions
             {
@@ -88,9 +113,9 @@
 
                 _settings = Infrastructure.FooModuleSettings.Load(TabModuleId);
                 {
-                    _settings.TemplateDirectory = ddlChoiceTemplate.SelectedValue.ToString();
+                    _settings.TemplateDirectory = cbTemplateDirectory.SelectedValue;
 
-                    _settings.Update();
+                    _settings.Update(); // update settings
                 }
             }
             catch (Exception ex) // catch exceptions

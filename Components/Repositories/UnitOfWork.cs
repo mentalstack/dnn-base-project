@@ -12,33 +12,45 @@
     {
         #region Properties
 
+        /// <summary>
+        /// Gets foo repository.
+        /// </summary>
         FooRepository Foos { get; }
 
         #endregion
     }
 
     /// <summary>
-    /// Unit of work implementation.
+    /// Unit of work.
     /// </summary>
     public class UnitOfWork : IUnitOfWork
     {
         #region Private Fields
 
+        /// <summary>
+        /// Foo repository.
+        /// </summary>
         private FooRepository _foos = null;
 
         #endregion
 
         #region Private Properties : Provider
 
+        /// <summary>
+        /// Data provider instance.
+        /// </summary>
         private DataProvider DataProvider { get; set; }
 
         #endregion
 
         #region Public Properties
 
-        public FooRepository Foos 
+        /// <summary>
+        /// Gets or sets foo repository.
+        /// </summary>
+        public FooRepository Foos
         {
-            get { return _foos ?? (_foos = new FooRepository(DataProvider)); } 
+            get { return _foos ?? (_foos = new FooRepository(DataProvider)); }
         }
 
         #endregion

@@ -121,18 +121,18 @@
     <value>Description</value>
   </data>
   <data name="Description.Label.Help" xml:space="preserve">
-    <value>That is the description of Foo</value>
+    <value>That is the description of foo</value>
   </data>
   <data name="Description.Required" xml:space="preserve">
-    <value>Description must not be empty!</value>
+    <value>Description is required</value>
   </data>
   <data name="Name.Label" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="Name.Label.Help" xml:space="preserve">
-    <value>This is the name of Foo</value>
+    <value>This is the name of foo</value>
   </data>
   <data name="Name.Required" xml:space="preserve">
-    <value>Name must not be empty!</value>
+    <value>Name is required</value>
   </data>
 </root>

@@ -7,15 +7,15 @@
     using System.Runtime.Serialization;
 
     /// <summary>
-    /// Foo class
+    /// Foo entity class.
     /// </summary>
     [DataContract, Serializable]
-    public class Foo: EntityBase
+    public class Foo : EntityBase
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets ID.
+        /// Gets or sets id.
         /// </summary>
         [DataMember]
         public int FooId { get; set; }
@@ -26,8 +26,7 @@
         [IgnoreDataMember]
         public override int KeyID
         {
-            get { return FooId; }
-            set { FooId = value; }
+            get { return FooId; } set { FooId = value; }
         }
 
         /// <summary>
@@ -47,9 +46,10 @@
         /// </summary>
         public override void Fill(IDataReader r)
         {
-            FooId = Utils.ConvertTo<int>(r["FooId"]);
-            Name = Utils.ConvertTo<string>(r["Name"]);
+            FooId       = Utils.ConvertTo<int>(r["FooId"]);
+
             Description = Utils.ConvertTo<string>(r["Description"]);
+            Name        = Utils.ConvertTo<string>(r["Name"]);
         }
 
         #endregion

@@ -6,21 +6,20 @@
 
 @inherits ViewWebPage
 
-
-<table class="dnnGrid margin" cellspacing="0" border="0">
-    <thead>
-        <tr class="dnnGridHeader">
-            <th align="center" scope="col">Name Foo</th>
-            <th align="center" scope="col">Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var foo in Model.Foos)
-        {
-            <tr class="dnnGridItem" align="center">
-                <th align="center" scope="col">@foo.Name</th>
-                <th align="center" scope="col">@foo.Description</th>
-            </tr>
-        }
-    </tbody>
+<table class="dnnGrid bseGrid" cellspacing="0">
+	<thead>
+		<tr class="dnnGridHeader">
+			<th align="center" scope="col">Name Foo</th>
+			<th align="center" scope="col">Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var foo in Model.Foos)
+		{
+			<tr class="dnnGridItem" align="center">
+				<td align="center">@foo.Name</td>
+				<td align="center">@foo.Description</td>
+			</tr>
+		}
+	</tbody>
 </table>

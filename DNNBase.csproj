@@ -178,6 +178,8 @@
     <Compile Include="WebControls\DnnFileSelector.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Css\foo.view.css" />
+    <Content Include="Css\edit.foo.css" />
     <Content Include="Css\foo.settings.css" />
     <Content Include="Css\foo.css" />
     <Content Include="FooView.ascx" />
@@ -193,8 +195,10 @@
     <Content Include="Images\logo.png" />
     <Content Include="License.txt" />
     <Content Include="Notes.txt" />
+    <Content Include="Scripts\foo.settings.js" />
     <Content Include="Scripts\utils.js" />
-    <Content Include="Scripts\auxiliary.js" />
+    <Content Include="Scripts\foo.view.js" />
+    <Content Include="Scripts\edit.foo.js" />
     <Content Include="Scripts\foo.js" />
     <Content Include="Templates\View\Default\Css\template.css" />
     <Content Include="Templates\View\Toxic\Css\template.css" />
@@ -221,9 +225,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Providers\Data\SqlDataProvider\Uninstall.SqlDataProvider" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\FooSettings.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\EditFoo.resx" />

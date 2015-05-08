@@ -120,25 +120,19 @@
   <data name="Add.Header" xml:space="preserve">
     <value>Add New Foo</value>
   </data>
-  <data name="Command.Header" xml:space="preserve">
-    <value>Command</value>
-  </data>
   <data name="Delete.Confirm" xml:space="preserve">
     <value>Are you sure?</value>
   </data>
+  <data name="Delete.Header" xml:space="preserve">
+    <value />
+  </data>
   <data name="Edit.Header" xml:space="preserve">
-    <value>Edit Foo</value>
+    <value />
   </data>
   <data name="FooDescription.Header" xml:space="preserve">
-    <value>Description of the Foo</value>
+    <value>Description</value>
   </data>
   <data name="FooName.Header" xml:space="preserve">
-    <value>Name of the Foo</value>
-  </data>
-  <data name="Img.Header" xml:space="preserve">
-    <value>Foo Img</value>
-  </data>
-  <data name="Welcome.Title" xml:space="preserve">
-    <value>Foo welcomes you so much!</value>
+    <value>Name</value>
   </data>
 </root>

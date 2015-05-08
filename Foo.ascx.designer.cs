@@ -13,13 +13,13 @@ namespace DNNBase {
     public partial class Foo {
         
         /// <summary>
-        /// sbInit control.
+        /// phAjaxManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadScriptBlock sbInit;
+        protected global::System.Web.UI.WebControls.PlaceHolder phAjaxManager;
         
         /// <summary>
         /// alpMain control.
@@ -31,15 +31,6 @@ namespace DNNBase {
         protected global::Telerik.Web.UI.RadAjaxLoadingPanel alpMain;
         
         /// <summary>
-        /// phAjaxManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phAjaxManager;
-        
-        /// <summary>
         /// apMain control.
         /// </summary>
         /// <remarks>
@@ -49,13 +40,13 @@ namespace DNNBase {
         protected global::Telerik.Web.UI.RadAjaxPanel apMain;
         
         /// <summary>
-        /// lblMessage control.
+        /// btnAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.HyperLink btnAdd;
         
         /// <summary>
         /// grdFoo control.
@@ -65,14 +56,5 @@ namespace DNNBase {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DotNetNuke.Web.UI.WebControls.DnnGrid grdFoo;
-        
-        /// <summary>
-        /// hplAdd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hplAdd;
     }
 }

@@ -72,22 +72,21 @@
                     }
                 }
 
-                if (IsPostBack) return;
+                if (IsPostBack) return; int id = -1;
+
+                if (Int32.TryParse(Request.QueryString["id"] ?? "", out id))
+                {
+                    var foo = UnitOfWork.Foos.GetBy(id);
+
+                    txtName.Text = foo.Name; txtDescription.Text = foo.Description;
+                    {
+                        hfId.Value = id.ToString();
+                    }
+                }
 
                 string returnUrl = Request.QueryString["returnUrl"] ?? "/";
                 {
-                    hlReturn.NavigateUrl = returnUrl;
-                }
-
-                int id = -1;
-                string queryId = Request.QueryString["id"] ?? "";
-
-                if (Int32.TryParse(queryId, out id))
-                {
-                    DNNBase.Components.Entities.Foo foo = UnitOfWork.Foos.GetBy(id);
-
-                    txtName.Text = foo.Name;
-                    txtDescription.Text = foo.Description;
+                    btnCancel.NavigateUrl = returnUrl;
                 }
             }
             catch (Exception ex) // catch exceptions
@@ -97,28 +96,38 @@
         }
 
         /// <summary>
-        /// btnAdd_Click handler.
+        /// btnPrimary_OnClick handler.
         /// </summary>
-        protected void btnAdd_Click(object sender, EventArgs e)
+        protected void btnPrimary_OnClick(object sender, EventArgs e)
         {
-            if (!Page.IsValid) return;
-
-            int id = -1;
-            string queryId = Request.QueryString["id"] ?? "";
-
-            if (Int32.TryParse(queryId, out id))
+            try // try to handle btnPrimary_OnClick
             {
-                UnitOfWork.Foos.Update(id, txtName.Text, txtDescription.Text);
-            }
-            else
-            {
-                UnitOfWork.Foos.Add(txtName.Text, txtDescription.Text);
-            }
+                if (!Page.IsValid) return; int id = -1;
 
-            string returnUrl = Request.QueryString["returnUrl"] ?? "/";
-            Response.Redirect(returnUrl);
+                if (Int32.TryParse(hfId.Value, out id) && id != -1)
+                {
+                    UnitOfWork.Foos.Update(id, txtName.Text, txtDescription.Text);
+                }
+                else // if id is not exist then create new record, update existing otherwise
+                {
+                    UnitOfWork.Foos.Add(txtName.Text, txtDescription.Text);
+                }
+
+                string returnUrl = Request.QueryString["returnUrl"] ?? "/";
+                {
+                    Response.Redirect(returnUrl); // redirect back
+                }
+            }
+            catch (Exception ex) // catch exceptions
+            {
+                Exceptions.ProcessModuleLoadException(this, ex);
+            }
         }
-    }
 
         #endregion
+
+        #region Constructors
+
+        #endregion
+    }
 }

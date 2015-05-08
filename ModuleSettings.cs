@@ -2,6 +2,7 @@
 {
     using DotNetNuke.Entities.Modules;
 
+    using DotNetNuke.Services;
     using DotNetNuke.Services.Exceptions;
 
     using DotNetNuke.Framework;

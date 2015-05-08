@@ -1,25 +1,27 @@
 ﻿namespace DNNBase.Components.Repositories
 {
+    using DotNetNuke.Common;
     using DotNetNuke.Common.Utilities;
 
     using DotNetNuke.Data;
 
-    using System;
-    using System.Data;
-
-    using System.Collections.Generic;
-
+    using DNNBase.Components;
     using DNNBase.Components.Entities;
 
+    using System.Collections;
+    using System.Collections.Generic;
+
+    using System.Data;
+
     /// <summary>
-    /// Foo repository
+    /// Foo repository.
     /// </summary>
     public class FooRepository : RepositoryBase
     {
-        #region Public Add Method
+        #region Public Methods : Insert
 
         /// <summary>
-        /// Add new foo
+        /// Adds new foo.
         /// </summary>
         public int Add(string name, string message)
         {
@@ -28,10 +30,10 @@
 
         #endregion
 
-        #region Public Get Methods
+        #region Public Methods : Select
 
         /// <summary>
-        /// Gets foo by ID.
+        /// Gets foo by id.
         /// </summary>
         public Foo GetBy(int id)
         {
@@ -47,7 +49,7 @@
         }
 
         /// <summary>
-        /// Get all foos
+        /// Gets all foos.
         /// </summary>
         public List<Foo> GetAll()
         {
@@ -55,25 +57,24 @@
         }
 
         /// <summary>
-        /// Get all foos paged view
+        /// Gets all foos paged view.
         /// </summary>
         public List<Foo> GetAllView(int startIndex, int length, string orderBy, string orderDescription, out int total)
         {
             IDataReader reader = DataProvider.ExecuteReader("DNNBase_GetFooView", startIndex, length, orderBy, orderDescription);
 
-            reader.Read();
-            total = Utils.ConvertTo<int>(reader["TotalCount"]);
-            reader.NextResult();
-
-            return CBO.FillCollection<Foo>(reader);
+            reader.Read(); total = Utils.ConvertTo<int>(reader["TotalCount"]); reader.NextResult();
+            {
+                return CBO.FillCollection<Foo>(reader);
+            }
         }
 
         #endregion
 
-        #region Public Update Method
+        #region Public Methods : Update
 
         /// <summary>
-        /// Update foo
+        /// Updates foo.
         /// </summary>
         public void Update(int id, string name, string message)
         {
@@ -82,27 +83,27 @@
 
         #endregion
 
-        #region Public Delete Methods
+        #region Public Methods : Delete
 
         /// <summary>
-        /// Delete foo
-        /// </summary>
-        public void Delete(int id)
-        {
-            DataProvider.ExecuteNonQuery("DNNBase_DeleteFooById", id);
-        }
-
-        /// <summary>
-        /// Delete foo
+        /// Deletes foo by name.
         /// </summary>
         public void Delete(string name)
         {
             DataProvider.ExecuteNonQuery("DNNBase_DeleteFooByName", name);
         }
 
+        /// <summary>
+        /// Deletes foo by id.
+        /// </summary>
+        public void Delete(int id)
+        {
+            DataProvider.ExecuteNonQuery("DNNBase_DeleteFooById", id);
+        }
+
         #endregion
 
-        #region Public Contstructor with param
+        #region Contstructors
 
         /// <summary>
         /// Constructor with specified parameters.

@@ -38,6 +38,11 @@
         private RazorEvaluator<FooViewModel> _razor = null;
 
         /// <summary>
+        /// Module settings
+        /// </summary>
+        private Infrastructure.FooModuleSettings _settings = null;
+
+        /// <summary>
         /// HTML templates.
         /// </summary>
         private Dictionary<string, string> _templates = null;
@@ -47,17 +52,12 @@
         /// </summary>
         private FooViewModel _model = null;
 
-        /// <summary>
-        /// Module settings
-        /// </summary>
-        private Infrastructure.FooModuleSettings _settings = null;
-
         #endregion
 
         #region Public Methods
 
         /// <summary>
-        /// To Relative Url
+        /// Converts path to relative url.
         /// </summary>
         public string ToRelativeUrl(FileInfo source)
         {
@@ -72,21 +72,11 @@
         #region Protected Methods
 
         /// <summary>
-        /// Evaluates Item template.
+        /// Evaluates item template.
         /// </summary>
         protected string EvaluateItem()
         {
-            try
-            {
-                string template = _templates["Item"];
-
-                return _razor.Evaluate(_model, template);
-            }
-            catch (Exception ex) // catch exceptions
-            {
-                Exceptions.ProcessModuleLoadException(this, ex);
-                return "";
-            }
+            return _razor.Evaluate(_model, _templates["Item"]);
         }
 
         #endregion
@@ -107,9 +97,9 @@
                     LocalResourceFile = TemplateSourceDirectory + "/App_LocalResources/FooView.resx";
                 }
 
-                ClientResourceManager.RegisterScript(Page, TemplateSourceDirectory + "/Scripts/view.foo.js", FileOrder.Js.DefaultPriority + 1);
+                ClientResourceManager.RegisterScript(Page, TemplateSourceDirectory + "/Scripts/foo.view.js", FileOrder.Js.DefaultPriority + 1);
                 {
-                    ClientResourceManager.RegisterStyleSheet(Page, TemplateSourceDirectory + "/Css/view.foo.css", FileOrder.Css.DefaultPriority + 1);
+                    ClientResourceManager.RegisterStyleSheet(Page, TemplateSourceDirectory + "/Css/foo.view.css", FileOrder.Css.DefaultPriority + 1);
                 }
 
                 _razor = new RazorEvaluator<FooViewModel>(ModuleContext, LocalResourceFile);
@@ -141,7 +131,6 @@
             {
                 Exceptions.ProcessModuleLoadException(this, exc);
             }
-
         }
 
         /// <summary>
@@ -170,16 +159,19 @@
                 }
 
                 if (IsPostBack) return;
-
-                _model = new FooViewModel();
-                _model.Foos = UnitOfWork.Foos.GetAll();
-
+                {
+                    _model = new FooViewModel() { Foos = UnitOfWork.Foos.GetAll() };
+                }
             }
             catch (Exception ex) // catch exceptions
             {
                 Exceptions.ProcessModuleLoadException(this, ex);
             }
         }
+
+        #endregion
+
+        #region Constructors
 
         #endregion
     }

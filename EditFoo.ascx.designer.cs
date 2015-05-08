@@ -13,13 +13,13 @@ namespace DNNBase {
     public partial class EditFoo {
         
         /// <summary>
-        /// sbInit control.
+        /// phAjaxManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadScriptBlock sbInit;
+        protected global::System.Web.UI.WebControls.PlaceHolder phAjaxManager;
         
         /// <summary>
         /// alpMain control.
@@ -29,15 +29,6 @@ namespace DNNBase {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadAjaxLoadingPanel alpMain;
-        
-        /// <summary>
-        /// phAjaxManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phAjaxManager;
         
         /// <summary>
         /// apMain control.
@@ -85,21 +76,30 @@ namespace DNNBase {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDescription;
         
         /// <summary>
-        /// btnAdd control.
+        /// hfId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAdd;
+        protected global::System.Web.UI.WebControls.HiddenField hfId;
         
         /// <summary>
-        /// hlReturn control.
+        /// btnPrimary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlReturn;
+        protected global::System.Web.UI.WebControls.LinkButton btnPrimary;
+        
+        /// <summary>
+        /// btnCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink btnCancel;
     }
 }

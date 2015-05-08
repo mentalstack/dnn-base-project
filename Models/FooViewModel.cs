@@ -1,17 +1,20 @@
 ﻿namespace DNNBase.Models
 {
-    using DNNBase.Components.Entities;
-
+    using System.Collections;
     using System.Collections.Generic;
 
     /// <summary>
-    /// FooViewModel model for Razor skin
+    /// FooView model.
     /// </summary>
     public class FooViewModel
     {
+        #region Public Properties
+
         /// <summary>
-        /// Get all foos
+        /// Gets or sets foo list.
         /// </summary>
-        public List<Foo> Foos {get; set;}
+        public List<Components.Entities.Foo> Foos { get; set; }
+
+        #endregion
     }
 }

@@ -1,21 +1,14 @@
 ﻿namespace DNNBase.Components.Services
 {
+    using DotNetNuke.Web.Api;
+
     using DNNBase.Components;
     using DNNBase.Components.Repositories;
 
-    using DotNetNuke.Web.Api;
-
     using System.Net;
-    using System.Net.Http.Formatting;
+
     using System.Net.Http;
-
-    using System;
-
-    using System.Web.Http;
-
-    using DotNetNuke.Security;
-
-    using DNNBase.Components.Entities;
+    using System.Net.Http.Formatting;
 
     /// <summary>
     /// Web Api controller.
@@ -46,7 +39,15 @@
         #region Private Methods : Helpers
 
         /// <summary>
-        /// Format ok resopnse
+        /// Format OK resopnse
+        /// </summary>
+        private HttpResponseMessage ResponseOK()
+        {
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        /// <summary>
+        /// Format OK resopnse
         /// </summary>
         private HttpResponseMessage ResponseOK(object data)
         {
@@ -60,101 +61,7 @@
 
         #region Public Methods
 
-        /// <summary>
-        /// Add new foo
-        /// </summary>
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        [HttpPost]
-        public HttpResponseMessage Add([FromBody]Foo foo) 
-        {
-            try 
-            {
-                this.UnitOfWork.Foos.Add(foo.Name, foo.Description);
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
-            catch (Exception ex) 
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
-            }
-        }
-
-        /// <summary>
-        /// Get foo by ID
-        /// </summary>
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        [HttpGet]
-        public HttpResponseMessage GetById(int fooId)
-        {
-            try
-            {
-                Foo foo = this.UnitOfWork.Foos.GetBy(fooId);
-                return ResponseOK(foo);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
-            }
-        }
-
-        /// <summary>
-        /// Get all foos
-        /// </summary>
-        /// <returns></returns>
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        [HttpGet]
-        public HttpResponseMessage GetAll()
-        {
-            try
-            {
-                var list = this.UnitOfWork.Foos.GetAll();
-                return ResponseOK(list);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
-            }
-        }
-
-        /// <summary>
-        /// Delete foo by ID
-        /// </summary>
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        [HttpPost]
-        public HttpResponseMessage Delete(int fooId)
-        {
-            try
-            {
-                this.UnitOfWork.Foos.Delete(fooId);
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
-            }
-        }
-
-        /// <summary>
-        /// Update foo
-        /// </summary>
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        [HttpPost]
-        public HttpResponseMessage Update(Foo foo)
-        {
-            try
-            {
-                this.UnitOfWork.Foos.Update(foo.FooId, foo.Name, foo.Description);
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
-            }
-        }
+        // your awesome web-api here
 
         #endregion
     }

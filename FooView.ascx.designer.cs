@@ -13,13 +13,13 @@ namespace DNNBase {
     public partial class FooView {
         
         /// <summary>
-        /// sbInit control.
+        /// phAjaxManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadScriptBlock sbInit;
+        protected global::System.Web.UI.WebControls.PlaceHolder phAjaxManager;
         
         /// <summary>
         /// alpMain control.
@@ -29,15 +29,6 @@ namespace DNNBase {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadAjaxLoadingPanel alpMain;
-        
-        /// <summary>
-        /// phAjaxManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phAjaxManager;
         
         /// <summary>
         /// apMain control.

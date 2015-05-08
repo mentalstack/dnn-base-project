@@ -4,6 +4,7 @@
 
     using DotNetNuke.Entities.Modules;
 
+    using DotNetNuke.Services;
     using DotNetNuke.Services.Exceptions;
 
     using DotNetNuke.Framework;
@@ -52,7 +53,7 @@
             {
                 WebControl.DisabledCssClass = "aspNetDisabled disabled";
 
-                ClientResourceManager.RegisterScript(Page, TemplateSourceDirectory + "/Scripts/auxiliary.js");
+                ClientResourceManager.RegisterScript(Page, TemplateSourceDirectory + "/Scripts/utils.js");
                 {
                     base.OnInit(e);
                 }

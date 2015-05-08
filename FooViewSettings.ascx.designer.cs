@@ -13,12 +13,21 @@ namespace DNNBase {
     public partial class FooViewSettings {
         
         /// <summary>
-        /// ddlChoiceTemplate control.
+        /// cbTemplateDirectory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlChoiceTemplate;
+        protected global::DotNetNuke.Web.UI.WebControls.DnnComboBox cbTemplateDirectory;
+        
+        /// <summary>
+        /// rqvTemplateDirectory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rqvTemplateDirectory;
     }
 }

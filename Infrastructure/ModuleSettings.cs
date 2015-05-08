@@ -18,18 +18,20 @@
         private int _moduleId = -1;
 
         /// <summary>
-        /// Default template skin
+        /// Default template directory.
         /// </summary>
-        private string _directory = "Default";
+        private string _templateDirectory = "Default";
 
         #endregion
 
         #region Public Properties
-        
+
+        /// <summary>
+        /// Gets or sets template directory.
+        /// </summary>
         public string TemplateDirectory
         {
-            get { return _directory; }
-            set { _directory = value; }
+            get { return _templateDirectory; } set { _templateDirectory = value; }
         }
 
         #endregion
@@ -71,7 +73,7 @@
         {
             _moduleId = moduleId;
 
-            if (settings.ContainsKey("TemplateDirectory")) 
+            if (settings.ContainsKey("TemplateDirectory"))
             {
                 TemplateDirectory = settings["TemplateDirectory"].ToString();
             }
