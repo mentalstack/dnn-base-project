@@ -58,13 +58,13 @@ namespace DNNBase {
         protected global::System.Web.UI.WebControls.TextBox txtName;
         
         /// <summary>
-        /// rfv_1 control.
+        /// rfvName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvName;
         
         /// <summary>
         /// txtDescription control.
@@ -76,13 +76,13 @@ namespace DNNBase {
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
         
         /// <summary>
-        /// rfv_2 control.
+        /// rfvDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDescription;
         
         /// <summary>
         /// btnAdd control.
@@ -94,12 +94,12 @@ namespace DNNBase {
         protected global::System.Web.UI.WebControls.LinkButton btnAdd;
         
         /// <summary>
-        /// rtrn control.
+        /// hlReturn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink rtrn;
+        protected global::System.Web.UI.WebControls.HyperLink hlReturn;
     }
 }

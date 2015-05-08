@@ -49,19 +49,19 @@
             </asp:TextBox>
             <%-- Validator --%>
             <asp:RequiredFieldValidator
-                ID="rfv_1"
+                ID="rfvName"
                 CssClass="dnnFormMessage dnnFormError"
                 ValidationGroup="txtGroup"
                 Enabled="true"
                 Display="Dynamic"
-                ResourceKey="Edit.Required"
-                ControlToValidate="nameFoo"
+                ResourceKey="Name.Required"
+                ControlToValidate="txtName"
                 runat="server">
             </asp:RequiredFieldValidator>
         </div>
         <br />
         <div class="dnnFormItem">
-            <dnn:Label AssociatedControl ResourceKey="Desc.Label" runat="server" />
+            <dnn:Label AssociatedControl ResourceKey="Description.Label" runat="server" />
             <%-- TextBox Control --%>
             <asp:TextBox
                 ID="txtDescription"
@@ -72,13 +72,13 @@
             </asp:TextBox>
             <%-- Validator --%>
             <asp:RequiredFieldValidator
-                ID="rfv_2"
+                ID="rfvDescription"
                 CssClass="dnnFormMessage dnnFormError"
                 ValidationGroup="txtGroup"
                 Enabled="true"
                 Display="Dynamic"
-                ResourceKey="Edit.Required"
-                ControlToValidate="descFoo"
+                ResourceKey="Description.Required"
+                ControlToValidate="txtDescription"
                 runat="server">
             </asp:RequiredFieldValidator>
         </div>
@@ -86,6 +86,6 @@
         <%-- Control --%>
         <asp:LinkButton ID="btnAdd" CssClass="dnnPrimaryAction" Text="Add(+)" ValidationGroup="txtGroup" OnClick="btnAdd_Click" runat="server"/>
         <%-- HyperLink --%>
-        <asp:HyperLink ID="rtrn" CssClass="dnnSecondaryAction" Text="Return"  runat="server"/>
+        <asp:HyperLink ID="hlReturn" CssClass="dnnSecondaryAction" Text="Return"  runat="server"/>
     </div>
 </tlr:RadAjaxPanel>

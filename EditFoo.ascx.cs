@@ -74,11 +74,10 @@
 
                 if (IsPostBack) return;
 
-                rtrn.NavigateUrl = Request.QueryString["returnUrl"].ToString(); // Back to the Past
+                hlReturn.NavigateUrl = Request.QueryString["returnUrl"].ToString(); // Back to the Past
 
                 int id = -1;
                 string queryId = Request.QueryString["id"] ?? "";
-
 
                 if (Int32.TryParse(queryId, out id))
                 {
@@ -99,22 +98,22 @@
         /// </summary>
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid)
+            if (!Page.IsValid)
+                return;
+
+            int id = -1;
+            string queryId = Request.QueryString["id"] ?? "";
+
+            if (Int32.TryParse(queryId, out id))
             {
-                int id = -1;
-                string queryId = Request.QueryString["id"] ?? "";
-
-                if (Int32.TryParse(queryId, out id))
-                {
-                    UnitOfWork.Foos.Update(id, txtName.Text, txtDescription.Text);
-                }
-                else
-                {
-                    UnitOfWork.Foos.Add(txtName.Text, txtDescription.Text);
-                }
-
-                Response.Redirect(Request.QueryString["returnUrl"].ToString()); // Back to the Past
+                UnitOfWork.Foos.Update(id, txtName.Text, txtDescription.Text);
             }
+            else
+            {
+                UnitOfWork.Foos.Add(txtName.Text, txtDescription.Text);
+            }
+
+            Response.Redirect(Request.QueryString["returnUrl"].ToString()); // Back to the Past
         }
     }
 
